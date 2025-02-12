@@ -5,32 +5,31 @@ using namespace std;
 signed main(){
     int t;
     cin >> t;
-    
-    while(t--){
-        int n,l,r;
+
+    while (t--) {
+        int n, l, r;
         cin >> n >> l >> r;
-        vector<int> seq(n);
-        vector<int> seqR(n);
+        l--; 
+        vector<int> original(n);
 
-        for (auto &x : seq) cin >> x;
-
-        for (int i = 0; i < n; i++)
-        {
-            seqR[i] = seq[n-1-i];
+        for (int i = 0; i < n; i++) {
+            cin >> original[i];
         }
 
-        int sumA = 0, sumB = 0, least = n+1;
-        for (int i = l-1; i < r; i++)
-        {
-            sumA += seq[i];
-            sumB += seqR[i];
-        }
+        vector<int> b = original;
+        sort(b.begin() + l, b.end());
 
-        int ans = min(sumA, sumB);
+        vector<int> c = original;
+        sort(c.begin(), c.begin() + r, greater<int>());
 
-        if(n%2 == 0 && n > 2) ans -= 1;
+        int sum_b = 0, sum_c = 0;
         
-        cout << ans << endl;
+        for (int i = l; i < r; i++) {
+            sum_b += b[i];
+            sum_c += c[i];
+        }
+
+        cout << min(sum_b, sum_c) << endl;
     }
     
     return 0;
