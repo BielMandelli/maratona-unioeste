@@ -3,6 +3,9 @@
 using namespace std;
  
 signed main(){
+    ios::sync_with_stdio(false); 
+    cin.tie(0);
+
     int t;
     cin >> t;
 
@@ -10,58 +13,36 @@ signed main(){
         int n, m;
         cin >> n >> m;
 
-        vector<int> a;
-        vector<int> b;
-        vector<vector<int>> ab(n, vector<int>(m));
-        bool invert = false;
-        for (int i = 0; i < n; i++){
-            for (int j = 0; j < m; j++){
-                cin >> ab[i][j];
-                if(invert){
-                    if(j%2) b.push_back(ab[i][j]);
-                    else a.push_back(ab[i][j]);
+        vector<vector<int>> tab(n, vector<int>(m));
+        unordered_map<int, int> color; 
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                cin >> tab[i][j];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++) {
+                if (color[tab[i][j]] == 2) continue;
+
+                if ((i + 1 < n && tab[i][j] == tab[i + 1][j]) ||
+                    (j + 1 < m && tab[i][j] == tab[i][j + 1]) ||
+                    (j - 1 >= 0 && tab[i][j] == tab[i][j - 1]) ||
+                    (i - 1 >= 0 && tab[i][j] == tab[i - 1][j])) {
+                    color[tab[i][j]] = 2;
+                } else {
+                    color[tab[i][j]] = 1;
                 }
-                if(!invert){
-                    if(j%2) a.push_back(ab[i][j]);
-                    else b.push_back(ab[i][j]);
-                }
             }
 
-            invert = !invert;
+        int ans = 0, maxColor = 0;
+        for (auto p : color) {
+            maxColor = max(maxColor, p.second);
+            ans += p.second;
         }
 
-        sort(a.begin(), a.end());
-        sort(b.begin(), b.end());
+        ans -= maxColor;
 
-        int mv = 0;
-        int medA = ((n*m)%2) ? ((n*m)/2) + 1 : (n*m)/2;
-        int medB = (n*m)/2;
-
-        int bestColor;
-        for (int i = 0; i < medA-1; i++){
-            if(binary_search(a.begin(), a.end(), a[i]) && binary_search(b.begin(), b.end(), a[i])) bestColor = a[i];
-        }
-        
-        for (int i = 0; i < medA-1; i++){
-            if(a[i] == bestColor) continue;
-            if(a[i] == a[i+1]) {
-                if(i+1 == medA-1) mv++;
-                continue;
-            }
-            else mv++;
-        }
-
-        for (int i = 0; i < medB-1; i++){
-            if(a[i] == bestColor) continue;
-            if(b[i] == b[i+1]) {
-                if(i+1 == medB-1) mv++;
-                continue;
-            }
-            else mv++;
-        }
-
-        cout << mv << endl;
-
+        cout << ans << endl;
     }
 
     return 0;
