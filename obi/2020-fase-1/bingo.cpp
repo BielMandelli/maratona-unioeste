@@ -9,7 +9,7 @@ signed main(){
     
     int n, k, u;
     cin >> n >> k >> u;
-    set<int> c[1000];
+    unordered_set<int> c[1000];
     set<int> ans;
 
     int aux;
@@ -26,14 +26,22 @@ signed main(){
     vector<int> ua(u);
     for(auto &x : ua) cin >> x;
 
-    for (int i = 0; i < u; i++)
+    int cnt = 0; 
+    for (int i = u-1; i >= 0; i--)
     {
         for (int j = 0; j < n; j++)
         {
-            if(c[j].find(ua[i]) != c[j].end()) c[j].erase(ua[i]);
-            if(c[j].empty()) ans.insert(j+1);
-            if(!ans.empty()) break;
+            if(c[j].empty()) continue;
+
+            if(c[j].find(ua[i]) != c[j].end()){
+                ans.insert(j+1);
+                c[j].clear();
+                cnt++;
+            }
         }
+
+        if(cnt < n) ans.clear();
+        else break;
     }
     
     for(auto x : ans) cout << x << " ";
