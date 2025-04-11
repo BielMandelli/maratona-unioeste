@@ -8,6 +8,5 @@ signed main()
     bieo;
     int n;
     cin >> n;
-    vector<vector<
     return 0;
 }
