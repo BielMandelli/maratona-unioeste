@@ -3,52 +3,40 @@ using namespace std;
 #define ll long long
 
 int main() {
-    double n;
+    double input;
+    cin >> input;
 
-    cin >> n;
+    int n = (int)(input * 100);
 
-    int cem = 0, cinq = 0, vinte = 0, dez = 0, cinco = 0, dois = 0, um = 0;
-    int cinqMoeda = 0, vinteMoeda = 0, dezMoeda = 0, cincoMoeda = 0, umMoeda = 0;
+    int cem = n / 10000;     n %= 10000;
+    int cinq = n / 5000;     n %= 5000;
+    int vinte = n / 2000;    n %= 2000;
+    int dez = n / 1000;      n %= 1000;
+    int cinco = n / 500;     n %= 500;
+    int dois = n / 200;      n %= 200;
 
-    cem = n/100;
-    n -= cem*100;
+    int um = n / 100;        n %= 100;
+    int cinqMoeda = n / 50;  n %= 50;
+    int vinteMoeda = n / 25; n %= 25;
+    int dezMoeda = n / 10;   n %= 10;
+    int cincoMoeda = n / 5;  n %= 5;
+    int umMoeda = n / 1;     n %= 1;
 
-    cinq = n/50;
-    n -= cinq*50;
+    cout << "NOTAS:" << endl;
+    cout << cem << " nota(s) de R$ 100.00" << endl;
+    cout << cinq << " nota(s) de R$ 50.00" << endl;
+    cout << vinte << " nota(s) de R$ 20.00" << endl;
+    cout << dez << " nota(s) de R$ 10.00" << endl;
+    cout << cinco << " nota(s) de R$ 5.00" << endl;
+    cout << dois << " nota(s) de R$ 2.00" << endl;
 
-    vinte = n/20;
-    n -= vinte*20;
+    cout << "MOEDAS:" << endl;
+    cout << um << " moeda(s) de R$ 1.00" << endl;
+    cout << cinqMoeda << " moeda(s) de R$ 0.50" << endl;
+    cout << vinteMoeda << " moeda(s) de R$ 0.25" << endl;
+    cout << dezMoeda << " moeda(s) de R$ 0.10" << endl;
+    cout << cincoMoeda << " moeda(s) de R$ 0.05" << endl;
+    cout << umMoeda << " moeda(s) de R$ 0.01" << endl;
 
-    dez = n/10;
-    n -= dez*10;
-
-    cinco = n/5;
-    n -= cinco*5;
-
-    dois = n/2;
-    n -= dois*2;
-
-    um = n/1;
-    n -= um*1;
-
-    cinqMoeda = n/0.5;
-    n -= cinqMoeda*0.5;
-
-    vinteMoeda = n/0.25;
-    n -= vinteMoeda*0.25;
-
-    dezMoeda = n/0.10;
-    n -= dezMoeda*0.10;
-
-    cincoMoeda = n/0.05;
-    n -= cincoMoeda*0.05;
-
-    umMoeda = n/0.01;
-    n -= umMoeda*0.01;
-
-    cout << "NOTAS:" << endl << cem << " nota(s) de R$ 100.00" << endl << cinq << " nota(s) de R$ 50.00" << endl << vinte << " nota(s) de R$ 20.00" << endl;
-    cout << dez << " nota(s) de R$ 10.00" << endl << cinco << " nota(s) de R$ 5.00" << endl << dois << " nota(s) de R$ 2.00" << endl;
-    cout << "MOEDAS:" << endl << um << " moeda(s) de R$ 1.00" << endl << cinqMoeda << " moeda(s) de R$ 0.50" << endl << vinteMoeda << " moeda(s) de R$ 0.25" << endl;
-    cout << dezMoeda << " moeda(s) de R$ 0.10" << endl << cincoMoeda << " moeda(s) de R$ 0.05" << endl << umMoeda << " moeda(s) de R$ 0.01" << endl;
     return 0;
 }
