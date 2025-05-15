@@ -40,8 +40,6 @@ signed main(){
         else break;
     }
     
-    sort(ans.begin(), ans.end());
-    
     for(auto x : ans) cout << x << " ";
     cout << endl;
     
