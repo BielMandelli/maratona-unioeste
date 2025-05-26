@@ -6,16 +6,13 @@ using namespace std;
 signed main()
 {
     bieo;
-
-    int x;
     
-    if(condicao){
-        executa;
-    } else if(condicao2){
-        executa2;
-    } else {
-        executa3;
-    }
+    int w;
+    cin >> w;
+
+    if(w%2 or w == 2) cout << "NO";
+    else cout << "YES";
+    cout << endl;
     
     return 0;
 }

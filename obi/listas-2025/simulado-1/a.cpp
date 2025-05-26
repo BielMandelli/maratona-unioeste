@@ -6,16 +6,10 @@ using namespace std;
 signed main()
 {
     bieo;
+    int n;
 
-    int x;
-    
-    if(condicao){
-        executa;
-    } else if(condicao2){
-        executa2;
-    } else {
-        executa3;
-    }
+    cin >> n;
+    cout << n+1 << endl;
     
     return 0;
 }

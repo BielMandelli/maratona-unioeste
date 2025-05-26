@@ -6,15 +6,15 @@ using namespace std;
 signed main()
 {
     bieo;
-
-    int x;
     
-    if(condicao){
-        executa;
-    } else if(condicao2){
-        executa2;
-    } else {
-        executa3;
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >> n;
+
+        cout << n*2 << endl;
     }
     
     return 0;
