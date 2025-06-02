@@ -6,19 +6,8 @@ using namespace std;
 signed main()
 {
     bieo;
+    int x;
     
-    int n;
-    vector<int> vetor(n);
-
-    for (int i = 0; i < n; i++)
-    {
-        cin >> vetor[i];
-    }
-    
-    sort(vetor.begin(), vetor.end());
-
-    int valor = 1;
-    int posicao = upper_bound(vetor.begin(), vetor.end(), valor) - vetor.begin();
     
     return 0;
 }
