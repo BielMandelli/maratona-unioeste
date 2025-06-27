@@ -4,17 +4,14 @@ using namespace std;
 #define int long long
 #define endl '\n'
 
-int solve(){
+void solve() {
     
 }
 
-signed main()
-{
+signed main() {
     bieo;
-    int t=1;
-    cin >> t;
-
-    while (t--) cout << solve() << endl;
-    
+    int t = 1;
+    // cin >> t;
+    while (t--) solve();
     return 0;
 }

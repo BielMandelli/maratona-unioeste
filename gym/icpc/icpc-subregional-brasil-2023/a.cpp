@@ -5,14 +5,25 @@ using namespace std;
 #define endl '\n'
 
 int solve(){
+    int n, h;
+    cin >> n >> h;
+    vector<int> a(n);
+    for(auto &x : a) cin >> x;
+
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if(a[i] <= h) ans++;
+    }
     
+    return ans;
 }
 
 signed main()
 {
     bieo;
     int t=1;
-    cin >> t;
+    // cin >> t;
 
     while (t--) cout << solve() << endl;
     

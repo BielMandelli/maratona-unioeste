@@ -4,6 +4,9 @@ using namespace std;
 #define int long long
 #define endl '\n'
 
+struct cell {
+    int i, j;
+};
 
 void solve() {
     int n, m;
@@ -18,14 +21,31 @@ void solve() {
             mx = max(mx, a[i][j]);
         }
 
-    set<int> cids, rids;
+    vector<cell> mId;
     for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++) {
-            if(a[i][j] == mx) {
-                cids.insert(j);
-                rids.insert(i);
+        for (int j = 0; j < m; j++)
+            if (a[i][j] == mx) mId.push_back({i, j});
+
+    for (int i = 0; i < n; i++) {
+        int uniqC = -1;
+        bool valid = true;
+
+        for (auto cell : mId) {
+            if (cell.i == i) continue;
+            if (uniqC == -1) uniqC = cell.j;
+            else if (uniqC != cell.j) {
+                valid = false;
+                break;
             }
         }
+
+        if (valid) {
+            cout << mx - 1 << endl;
+            return;
+        }
+    }
+
+    cout << mx << endl;
 }
 
 signed main()

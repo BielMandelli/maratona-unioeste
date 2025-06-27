@@ -4,7 +4,7 @@ using namespace std;
 #define int long long
 #define endl '\n'
 
-int solve(){
+void solve(){
     
 }
 
@@ -14,7 +14,7 @@ signed main()
     int t=1;
     cin >> t;
 
-    while (t--) cout << solve() << endl;
+    while (t--) solve();
     
     return 0;
 }
