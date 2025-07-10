@@ -4,9 +4,25 @@ using namespace std;
 #define int long long
 #define endl '\n'
 
-void solve(){
+void solve() {
+    int n, k;
+    string s;
+    cin >> n >> k >> s;
     
+    int cnt = count(s.begin(), s.end(), '1');
+    if (cnt <= k) {
+        cout << "Alice" << endl;
+        return;
+    }
+    
+    if (k*2 <= n) {
+        cout << "Bob" << endl;
+        return;
+    }
+    
+    cout << "Alice" << endl;
 }
+
 
 signed main()
 {
