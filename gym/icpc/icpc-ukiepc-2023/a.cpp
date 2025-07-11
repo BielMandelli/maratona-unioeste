@@ -8,26 +8,16 @@ void solve() {
     int n, W;
     cin >> n >> W;
 
-    int k = n/2; 
+    int k = n/2 - 1; 
 
     vector<pair<int, int>> e;
 
-    for (int i = 0; i < k; i++) {
-        int w = W - i;   
-        int q = i;       
-        e.push_back({w, q});
-    }
-
-    for (int i = 0; i < n - k; i++) {
-        int w = W + 1000 + i; 
-        int q = 0;            
-        e.push_back({w, q});
-    }
-
-    set<pair<int, int>> uniq;
-    for (auto &[w, q] : e) {
-        while (uniq.count({w, q})) q++; 
-        uniq.insert({w, q});
+    for (int i = 0; i < n; i++)
+    {
+        int w, q;
+        w = (W >= 5000 ? i : 1e4 - i);
+        q = (i <= k ? k-i : i);
+        e.push_back({w,q});
     }
 
     for (auto [w, q] : e) cout << w << ' ' << q << endl;
