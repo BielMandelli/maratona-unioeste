@@ -7,34 +7,23 @@ using namespace std;
 void solve(){
     int n;
     cin >> n;
-
     vector<int> a(n);
-    int mx = -1, mn = 1e9;
-    for(auto &x : a) {
-        cin >> x;
-        mx = max(x, mx);
-        mn = m
+    for(auto &x : a) cin >> x;
 
-    int first = a[0], last = a[n-1];
-    vector<bool> bs(n, false);
-    bs[0] = true;
-    bs[n-1] = true;
-    for (int i = 1, j = n-1; i < n-1; i++, j--)
-    {
-        if(a[i] < first) {
-            bs[i] = true;
-            first = max(a[i], first);
-        }
-        
-        if(a[j] > last) {
-            bs[i] = true;
-            last = min(a[j], last);
-        }
-    }
+    vector<int> pmin(n), smax(n);
+    pmin[0] = a[0];
+    for(int i = 1; i < n; i++) pmin[i] = min(pmin[i-1], a[i]);
     
-    for (int i = 0; i < n; i++) cout << (bs[i] ? "1" : "0");
+    smax[n-1] = a[n-1];
+    for(int i = n-2; i >= 0; i--) smax[i] = max(smax[i+1], a[i]);
+    
+    for(int i = 0; i < n; i++) {
+        if (a[i] == pmin[i] || a[i] == smax[i]) cout << '1';
+        else cout << '0';
+    }
     cout << endl;
 }
+
 
 signed main()
 {
