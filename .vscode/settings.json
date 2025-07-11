@@ -1,6 +1,9 @@
 {
     "files.associations": {
+        "*.csv": "csv (semicolon)",
         "vector": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "span": "cpp"
     }
 }
