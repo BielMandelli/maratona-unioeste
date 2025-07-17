@@ -75,6 +75,9 @@ const ld LINF = 1e18;
 const int MAX = 51;
 
 int n, m; 
+
+vector<line> wll(MAX);
+vector<pt> c(MAX);
 vector<pair<int, ld>> g[MAX]; 
 vector<int> pc;
 ld d[1 << 10][MAX]; 
@@ -112,12 +115,10 @@ ld steiner() {
 void solve(){
     cin >> n >> m;
 	
-    vector<pt> c(n);
 	for (int i = 0; i < n; i++) {
     	cin >> c[i];
 	}
 	
-	vector<line> wll(m);
 	for (int i = 0; i < m; i++) {
     	cin >> wll[i];
 	}
@@ -132,16 +133,12 @@ void solve(){
 
 	for (int i = 0; i < n; ++i) {
 		for (int j = i + 1; j < n; ++j) {
-			line cable = {c[i], c[j]};
 			bool valid = true;
-
-			for (auto w : wll) {
-				if (interseg(cable, w)) {
-					valid = false;
-					break;
-				}
+			for (int k = 0; k < m; k++)
+			{
+				if(interseg(line(c[i], c[j]), wll[k])) valid = false;
 			}
-
+			
 			if (valid) {
 				ld d = dist(c[i], c[j]);
 				g[i].emplace_back(j, d);
@@ -151,8 +148,11 @@ void solve(){
 	}
 
 	ld ans = steiner();
-	if (ans == LINF) cout << "impossivel\n";
-	else cout << fixed << setprecision(3) << ans << '\n';
+	if (ans >= LINF)
+		cout << "impossivel\n";
+	else
+		cout << fixed << setprecision(3) << ans << '\n';
+
 }
 
 signed main(){
