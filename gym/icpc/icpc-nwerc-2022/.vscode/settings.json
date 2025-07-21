@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.csv": "csv (semicolon)",
+        "string": "cpp",
+        "format": "cpp"
+    }
+}

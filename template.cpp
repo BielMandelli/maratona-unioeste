@@ -4,7 +4,7 @@ using namespace std;
 #define int long long
 #define endl '\n'
 
-int solve(){
+void solve(){
     
 }
 
@@ -12,9 +12,9 @@ signed main()
 {
     bieo;
     int t=1;
-    cin >> t;
+    // cin >> t;
 
-    while (t--) cout << solve() << endl;
+    while (t--) solve();
     
     return 0;
 }
