@@ -1,8 +1,10 @@
 {
     "files.associations": {
+        "*.csv": "csv (semicolon)",
         "iostream": "cpp",
         "ostream": "cpp",
         "chrono": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "tuple": "cpp"
     }
 }
