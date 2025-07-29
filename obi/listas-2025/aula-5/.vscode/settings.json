@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.csv": "csv (semicolon)",
+        "ostream": "cpp",
+        "iostream": "cpp"
+    }
+}
