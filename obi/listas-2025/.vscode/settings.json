@@ -1,7 +1,6 @@
 {
     "files.associations": {
         "*.csv": "csv (semicolon)",
-        "iostream": "cpp",
-        "random": "cpp"
+        "iostream": "cpp"
     }
 }
