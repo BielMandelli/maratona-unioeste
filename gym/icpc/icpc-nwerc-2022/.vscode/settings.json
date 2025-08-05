@@ -3,6 +3,7 @@
         "*.csv": "csv (semicolon)",
         "string": "cpp",
         "format": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp"
     }
 }
