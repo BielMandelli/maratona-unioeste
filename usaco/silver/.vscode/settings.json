@@ -5,6 +5,7 @@
         "deque": "cpp",
         "string": "cpp",
         "vector": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "array": "cpp"
     }
 }
