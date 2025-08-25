@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define fastio cin.tie(0)->sync_with_stdio(0)
+#define ll long long
+#define sz(a) ((int)(a).size())
+#define all(a) a.begin(), a.end()
+#define rall(a) a.rbegin(), a.rend()
+
+// #define DEBUG
+
+void debug_out(string s, int line) { cerr << endl; }
+template <typename H, typename... T>
+void debug_out(string s, int line, H h, T... t)
+{
+    if (s[0] != ',')
+        cerr << "Line(" << line << ") ";
+    do
+    {
+        cerr << s[0];
+        s = s.substr(1);
+    } while (s.size() and s[0] != ',');
+    cerr << " = " << h;
+    debug_out(s, line, t...);
+}
+
+#ifdef DEBUG
+#define dbg(...) debug_out(#__VA_ARGS__, __LINE__, __VA_ARGS__)
+#else
+#define dbg(...) 42
+#endif
+
+vector<ll> m(18);
+
+void precalc(){
+    for (int i = 1; i <= 17; i++)
+    {
+        ll l = ceil(sqrt(pow(10LL, i-1)));
+        ll r = floor(sqrt(pow(10LL, i)-1));
+
+        if(l <= r) m[i] = r-l+1;
+    }
+}
+
+void solve(){
+    int l, r;
+    cin >> l >> r;
+
+    ll ans = 0;
+    for (int i = l; i <= r; i++)
+    {
+        ans += m[i];
+    }
+    
+    cout << ans << endl;
+}
+
+signed main()
+{
+    fastio;
+    precalc();
+    int t = 1;
+    cin >> t;
+    for (int i = 0; i < t; i++) solve();
+}
