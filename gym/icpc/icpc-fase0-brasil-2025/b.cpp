@@ -1,59 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define int long long
+#define bieo cin.tie(0)->sync_with_stdio(0)
+#define endl '\n'
+int n, ans = 0;
+vector<vector<pair<int,int>>> tree;
+vector<vector<int>> aut;
+vector<int> edges, p;
+string st, s;
 
-const int ALPHA = 26; 
-const int MAXN = 1e5 + 5;
+void calc_kmp(char ch){
+    s.push_back(ch);
 
-int n;
-vector<int> tree[MAXN];
-char edgeLabel[MAXN]; 
-int pi[MAXN];         
-int aut[MAXN][ALPHA]; 
-int res = 0;
+    int i = s.size() - 1;
 
-string path; 
-
-void iteracao_kmp (char ch) {
-    s.append(ch);
-    int i = st.size() - 1;
-    for (int i = 0; i < ALPHA; i++)
-        {
-            if (i > 0 && c != st[i])
-                aut[i][c] = aut[p[i - 1]][c];
-            else
-                aut[i][c] = i + (c == st[i]);
-        }
-    }
-
-void dfs(int v) {
-    for (int u : tree[v]) {
-        iteracao_kmp(u);
-        dfs(u);
-
-        path.pop_back(); 
+    for (int c = 0; c < 26; c++){
+        if(i > 0 && 'a' + c != ch) aut[i][c] = aut[p[i-1]][c];
+        else aut[i][c] = i + (s[i] == ('a' + c));
     }
 }
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+void dfs(int node){
+    for (auto [c, e] : tree[node]){                  
+        calc_kmp(c);
+        int n = s.size();
+        int j = (n >= 2 ? aut[p[n-2]][c - 'a'] : 0);                   
+        p.push_back(j);            
+        int k = n - j;                                                 
+        if(k && j && (n % k == 0)) ans= max(ans, k);            
+        dfs(e);
+        s.pop_back();
+        p.pop_back();
+    }            
+    if(s.size()){
+        aut.pop_back();
+    }
+}
 
+void solve(){
     cin >> n;
 
-    vector<int> parent(n + 1);
-    for (int i = 2; i <= n; ++i) {
-        cin >> parent[i];
-        tree[parent[i]].push_back(i);
+    tree.resize(n);
+    edges.resize(n-1);
+    aut.resize(n, vector<int>(26));
+    for(auto &x : edges) cin >> x;
+
+    cin >> st;
+
+    for (int i = 0; i < n-1; i++)
+    {
+        int u = edges[i];
+        u--;
+        tree[u].push_back({st[i], i+1});
     }
 
-    string labels;
-    cin >> labels;
-    for (int i = 2; i <= n; ++i) {
-        edgeLabel[i] = labels[i - 2];
-    }
+    for (int i = 0; i < n; i++) sort(tree[i].begin(), tree[i].end());
+    
+    dfs(0);
 
-    dfs(1); 
+    cout << ans << endl;
+}
 
-    cout << res << '\n';
+signed main() {
+    bieo;
+    int t = 1;
+    //cin >> t;
+    while (t--) solve();
+
     return 0;
 }
