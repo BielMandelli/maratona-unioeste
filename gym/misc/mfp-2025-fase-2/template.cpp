@@ -22,40 +22,10 @@ void dbg_out(string s, H h, T... t){
 #else
 #define dbg(...) 42
 #endif
-int ans = 0;
-int n, q;
-vector<string> g;
-vector<vector<int>> sts;
-void apply(int i, int j, int diff){
-    if(g[i][j] == '.') return;
-
-    i = min(i, n-1-i);
-    j = min(j, n-1-j);
-
-    ans -= min(sts[i][j], 4-sts[i][j]);
-    sts[i][j] += diff;
-    ans += min(sts[i][j], 4-sts[i][j]);
-}
 
 void solution(){
-    cin >> n >> q;
-    g.resize(n);
-    for(auto &x : g) cin >> x;
-
-    sts.resize(n/2, vector<int>(n/2));
-    for (int i = 0; i < n; i++) for(int j = 0; j < n; j++) apply(i, j, 1);
-    
-    cout << ans << endl;
-
-    while(q--){
-        int r,c;
-        cin >> r >> c;
-        r--; c--;
-        apply(r, c, -1);
-        g[r][c] = '#' + '.' - g[r][c];
-        apply(r, c, 1);
-        cout << ans << endl;
-    }
+    int n;
+    cin >> n;
 }
 
 signed main(){
