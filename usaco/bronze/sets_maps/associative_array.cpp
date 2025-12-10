@@ -23,33 +23,28 @@ void dbg_out(string s, H h, T... t){
 #define dbg(...) 42
 #endif
 
+#define int long long
+
 void solution(){
-    int n, k;
-    cin >> n >> k;
+    int n;
+    cin >> n;
 
-    vector<int> a(n), b(k);
-    for (int i = 0; i < n; i++) cin >> a[i];
-
-    for (int i = 0; i < k; i++) cin >> b[i];
-    
-    vector<int> psum(n+1);
-    for (int i = 1; i <= n; i++) psum[i] = psum[i-1] + a[i-1];
-    
-    set<int> fix;
-    for (int i = 1; i <= n; i++) fix.insert(b[0]-psum[i]);
-    
-    int ans = 0;
-    for(auto f : fix){
-        set<int> poss;
-        for(int i = 1; i <= n; i++) poss.insert(f + psum[i]);
-
-        bool valid = true;
-        for(auto j : b) valid &= poss.count(j);
-
-        ans += valid;
+    map<int, int> mp;
+    for (int i = 0, op; i < n; i++)
+    {
+        cin >> op;
+        if(!op) {
+            int k,v;
+            cin >> k >> v;
+            mp[k] = v;
+        }
+        else {
+            int k;
+            cin >> k;
+            cout << mp[k] << endl;
+        }
     }
-
-    cout << ans << endl;
+    
 }
 
 signed main(){
