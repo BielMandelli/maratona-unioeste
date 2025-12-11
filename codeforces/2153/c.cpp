@@ -52,33 +52,28 @@ void solution(){
     ll sub = 0;
     if (sz(odd) > 2) for (ll i = 0; i < sz(odd) - 2; i++) sub += odd[i];
     
-    ll cur = sum, remain = n, ans = 0, i = 0, big = 0;
+    ll cur = sum, remain = n, ans = 0;
 
-    while (true) {
+    for (auto &[len, cnt] : gr) {
         ll cand = cur - sub;
-
-        if(i<sz(gr)) big = gr[i].first;
-        else big = 0;
-
         ll cost = remain - max(0, sz(odd) - 2);
+        dbg(cand, cost);
 
-        if (cost >= 3 && cand > 2 * big) {
+        if (cost >= 3 && cand > 2 * len) {
             ans = cand;
+            // dbg(ans);
             break;
         }
 
-        if (i >= sz(gr)) break;
-
-        auto [len, cnt] = gr[i];
         cur -= len * cnt;
         remain -= cnt;
+        dbg(cur, remain);
 
         if (cnt%2) {
             if (sz(odd) > 3) sub -= odd[sz(odd) - 3];
             else sub = 0;
             odd.pop_back();
         }
-        i++;
     }
 
     cout << ans << endl;
