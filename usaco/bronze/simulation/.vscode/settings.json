@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.csv": "csv (semicolon)",
+        "complex": "cpp",
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
+    }
+}
