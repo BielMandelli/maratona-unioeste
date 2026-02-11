@@ -74,7 +74,6 @@ public:
     T query(int l, int r, int idx, int a, int b){
         if (b < l || r < a) return neutral;
         prop(idx);
-        ans.insert(t[idx]);
         if (a <= l && r <= b) {
             return t[idx];
         }
@@ -95,20 +94,39 @@ public:
 void solution(){
     int n;
     cin >> n;
+    ans.clear();
 
     vector<pair<int,int>> p(n);
 
-    vector<int> a(1e7, -1);
-    Segtree seg(a, -1);
     int id = 1;
     for(auto &x : p) {
         cin >> x.first >> x.second;
-        seg.update(x.first, x.second, id);
+    }
+    
+    vector<int> coords;
+    for(auto &x : p){
+        coords.push_back(x.first);
+        coords.push_back(x.second);
+        coords.push_back(x.second + 1);
+    }
+    vector<int> a(sz(coords), -1);
+    Segtree<int> seg(a, -1);
+
+    sort(all(coords));
+    coords.erase(unique(all(coords)), coords.end());
+
+    for(auto &x : p){
+        int l = lower_bound(all(coords), x.first) - coords.begin();
+        int r = lower_bound(all(coords), x.second) - coords.begin();
+        seg.update(l, r, id);
         id++;
     }
     
-    seg.query(0, 1e7);
-    for(auto &x : ans) cout << x << ' ';
+    for(int i = 0; i < coords.size(); i++){
+        int val = seg.query(i, i);
+        if(val != -1) ans.insert(val);
+    }
+    cout << sz(ans) << endl;
 }
 
 signed main(){
