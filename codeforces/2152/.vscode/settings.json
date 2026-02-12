@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.csv": "csv (semicolon)",
+        "cmath": "cpp",
+        "complex": "cpp"
+    }
+}
