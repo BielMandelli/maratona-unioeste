@@ -26,17 +26,7 @@ void dbg_out(string s, H h, T... t){
 void solution(){
     int n;
     cin >> n;
-    vector<int> a(n);
-    for(auto &x : a) cin >> x;
-
-    sort(all(a));
-
-    int sum = 0;
-    for (int i = 0; i < count; i++)
-    {
-        /* code */
-    }
-    
+    cout << n << endl;
 }
 
 signed main(){
