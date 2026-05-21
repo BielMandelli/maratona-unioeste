@@ -7,39 +7,36 @@ using namespace std;
 #define rall(a) a.rbegin(), a.rend()
 #define sz(a) ((int)(a).size())
 
+#define int long long
+
 void solve(){
     string s;
     cin >> s;
 
     stack<pair<int,int>> st;
 
-    int ans = 0, h = 1, parity = 0;
-
-    int wh = 0, bl = 0;
+    int ans = 0;
+    int cnt = 0;
     for (int i = 0; i < s.size(); i++)
     {
-        if(st.empty()){
-            h = 1;
-            parity = 0;
-        } 
-
         if(s[i] == '(') {
             st.push({i, 0});
+            cnt++;
         } else {
-            
-            auto [fr,sc] = st.top();
-            st.pop();
-            int b = i - fr;
-            if(parity) bl += b*h;
-            else wh += b*h;
-            cout << i << " " << b << " " << parity << endl;
+            int maxh = 0;
 
-            parity = !parity;
-            h++;
+            while(st.top().second > 0){
+                maxh = max(maxh, st.top().second);
+                st.pop();
+            }
+            st.top().second += maxh+1;
+
+            ans += (i-st.top().first) * st.top().second * (cnt%2 ? 1 : -1);
+            cnt--;
         }
     }
     
-    cout << wh - bl << endl;
+    cout << ans << endl;
 }
 
 signed main(){
